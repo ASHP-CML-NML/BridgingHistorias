@@ -1,3 +1,6 @@
+/* @override 
+	http://bridginghistorias.gc.cuny.edu/profiles/commons/themes/contrib/commons_origins/css/global.styles.css?mollyc */
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,800);
 
 
@@ -449,8 +452,8 @@ var {
  */
 #site-name {
   margin: 0;
-  font-family: 'Trebuchet MS';
-  font-weight: 700;
+/*  font-family: 'Trebuchet MS';
+  font-weight: 700;*/
 }
 #site-name a:link, #site-name a:visited {
   text-decoration: none;
@@ -3687,10 +3690,15 @@ body.front.logged-in .view-commons-homepage-content .article.node.node-page .lin
   background: url('../images/icons/help.png?1363371593') no-repeat center 10px;
 }
 
-.palette-bridging-historias #block-search-form {
+.palette-bridging-historias #block-search-form, {
   display: none;
 }
-
+body.palette-bridging-historias.front.logged-in .view-commons-homepage-content .article.node .author-datetime {
+	margin-bottom: 10px ;
+}
+body.palette-bridging-historias.front .field-name-body {
+	margin-top: 0px;
+}
 body.palette-bridging-historias.page-node.node-type-group h2#page-title,
 body.palette-bridging-historias h2#page-title {
   font-size: 30px;
@@ -3770,10 +3778,11 @@ body.palette-bridging-historias .comment-reply {
   margin-top: -97px;
 }
 .palette-bridging-historias h1#site-name a {
-  font-family: 'Open Sans', Sans-Serif;
-  Text-transform: uppercase;
-  font-weight: 800;
-  color: #efce0b;
+	text-transform: uppercase;
+	 color: #efce0b;
+	 font-weight: bold;
+	/* background-color: red;*/
+  	font: 800 20px/25px 'Open Sans', Sans-Serif;
 }
 .palette-bridging-historias h2 {
   color: #830c00;
