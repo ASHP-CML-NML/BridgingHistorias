@@ -1,3 +1,6 @@
+/* @override 
+	http://bridginghistorias.gc.cuny.edu/profiles/commons/themes/contrib/commons_origins/css/responsive.smartphone.portrait.css?mollyc */
+
 /*
  *   Important Information about this CSS File
  *
@@ -10,4 +13,71 @@
 /* Increase the default font size on small devices */
 html {
   font-size: 112.5%;
+  background-color: blue;
+  min-width: 300px;
 }
+
+body.front.logged-in.palette-bridging-historias .view-commons-homepage-content .article.node .node-content .field-name-body, body.front.logged-in.palette-bridging-historias .view-commons-homepage-content .node-teaser.node-group .node-content .field-name-body {
+  margin-right: 0;
+  }
+.palette-bridging-historias #logo {
+	display: none;
+}
+ body.palette-bridging-historias #menu-bar
+{
+	clear: both;
+	display: block;
+}
+body.palette-bridging-historias #branding.clearfix {
+	float:none;
+	display: block;
+}
+.palette-bridging-historias.site-name-long hgroup#name-and-slogan{
+	display:block;
+	float: none;
+	width:100%;
+	text-align: center;
+	margin-top: 10px;
+	height: 50px;
+	padding-top: 20px;
+}
+.boxshadow .palette-bridging-historias .header-color-row-one,
+.palette-bridging-historias .header-color-row-one {
+
+	height: 102px;
+	background: none;
+	text-align: center;
+}
+
+.palette-bridging-historias header#header {
+	background: url(http://bridginghistorias.gc.cuny.edu/sites/default/files/map-tab_0.png) no-repeat left top #4D577E;
+	margin-bottom:60px;
+	height:  92px;
+	background: none;
+	text-align: center;
+}
+.palette-bridging-historias #page {
+	margin-top: -140px;
+}
+.palette-bridging-historias #menu-bar.nav.clearfix{
+	display: block;
+	width: 100%;
+	margin:  0 auto;
+	border-top: 1px solid #7978aa;
+}
+.palette-bridging-historias #menu-bar.nav ul.menu {
+	display: block;
+	width: 100%;
+}
+.palette-bridging-historias #menu-bar.nav ul.menu li{
+	width: 14%;
+}
+.palette-bridging-historias #menu-bar.nav ul.menu li a {
+  font-size: 12px;
+  padding: 31px 0 0 ;
+  text-align: center;
+  height: 0;
+  overflow: hidden;
+}
+
+
