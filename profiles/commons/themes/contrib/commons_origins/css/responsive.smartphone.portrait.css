@@ -13,8 +13,7 @@
 /* Increase the default font size on small devices */
 html {
   font-size: 112.5%;
-  min-width: 300px;
-}
+  }
 
 body.front.logged-in.palette-bridging-historias .view-commons-homepage-content .article.node .node-content .field-name-body, body.front.logged-in.palette-bridging-historias .view-commons-homepage-content .node-teaser.node-group .node-content .field-name-body {
   margin-right: 0;
@@ -34,7 +33,6 @@ body.palette-bridging-historias #branding.clearfix {
 .palette-bridging-historias.site-name-long hgroup#name-and-slogan{
 	display:block;
 	float: none;
-	width:100%;
 	text-align: center;
 	margin-top: 10px;
 	height: 50px;
@@ -49,7 +47,7 @@ body.palette-bridging-historias #branding.clearfix {
 }
 
 .palette-bridging-historias header#header {
-	background: url(http://bridginghistorias.gc.cuny.edu/sites/default/files/map-tab_0.png) no-repeat left top #4D577E;
+	background: url(http://bridginghistorias.gc.cuny.edu/sites/default/files/map-tab_0.png) no-repeat left top #4D577E !important;
 	margin-bottom:60px;
 	height:  92px;
 	background: none;
@@ -60,13 +58,12 @@ body.palette-bridging-historias #branding.clearfix {
 }
 .palette-bridging-historias #menu-bar.nav.clearfix{
 	display: block;
-	width: 100%;
 	margin:  0 auto;
 	border-top: 1px solid #7978aa;
 }
 .palette-bridging-historias #menu-bar.nav ul.menu {
 	display: block;
-	width: 100%;
+	background-color: #4D577E;
 }
 .palette-bridging-historias #menu-bar.nav ul.menu li{
 	width: 14%;
