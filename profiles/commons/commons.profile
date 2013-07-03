@@ -635,7 +635,7 @@ function commons_install_finished(&$install_state) {
       'status' => 1,
       'pages' => 0,
       'weight' => 1,
-      'title' => 'Bridging Historias Thanks:', // variable_get('site_name', 'Drupal Commons'),
+      'title' => variable_get('site_name', 'Drupal Commons'),
     );
     drupal_write_record('block', $footer_block);
   }
