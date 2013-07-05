@@ -567,6 +567,7 @@ var {
   -o-border-radius: 3px;
   border-radius: 3px;
 }
+
 .node-teaser.node-promoted.user-picture-available {
   padding-left: 78px;
 }
@@ -3696,6 +3697,13 @@ body.front.logged-in .view-commons-homepage-content .article.node.node-page .lin
  {
  	display: none;
 }
+.palette-bridging-historias .node-teaser.node-promoted {
+  background-image: none;
+}
+.palette-bridging-historias .node-teaser.node-promoted:hover .featured-node-tooltip {
+  display: none;
+}
+
 .palette-bridging-historias  #quicktabs-commons_follow_ui .quicktabs-tabpage {
 	margin-top:  1.5em;
 }
