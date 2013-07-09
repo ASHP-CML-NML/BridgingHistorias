@@ -3707,6 +3707,11 @@ body.front.logged-in .view-commons-homepage-content .article.node.node-page .lin
 .palette-bridging-historias  #quicktabs-commons_follow_ui .quicktabs-tabpage {
 	margin-top:  1.5em;
 }
+/* Groups page - widen the container that encloses the profile pics */
+.palette-bridging-historias .pane-commons-contributors-group-panel-pane-1 {
+  width: auto;
+ 
+}
 body.palette-bridging-historias.front.logged-in .view-commons-homepage-content .article.node .author-datetime {
 	margin-bottom: 10px ;
 }
