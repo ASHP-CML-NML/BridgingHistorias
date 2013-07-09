@@ -3725,6 +3725,12 @@ body.palette-bridging-historias header.node-header h2 {
   display: none;
 }
 
+/* removes the user and time that created a event in events list view and in event page */
+body.palette-bridging-historias.page-events p.author-datetime, body.palette-bridging-historias.node-type-event p.author-datetime {
+  display: none;
+}
+
+
 /* remove follow button from group page */
 .palette-bridging-historias .pane-node-flag-commons-follow-group-link {
   display: none;
