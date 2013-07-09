@@ -32,7 +32,8 @@ xmlrpc.php
 /includes
 /misc
 /modules
-/profiles
+#/profiles
 /scripts
 /themes
+# added by lmh 6/21/2013
 /downloads
