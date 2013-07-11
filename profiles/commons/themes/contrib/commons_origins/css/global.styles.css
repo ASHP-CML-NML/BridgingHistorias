@@ -1,3 +1,6 @@
+/* @override 
+	http://bridginghistorias.gc.cuny.edu/profiles/commons/themes/contrib/commons_origins/css/global.styles.css?mp2c2j */
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,800);
 
 
@@ -3687,7 +3690,37 @@ body.front.logged-in .view-commons-homepage-content .article.node.node-page .lin
 #menu-bar.nav ul.menu li.menu-item-1084 a {
   background: url('../images/icons/help.png?1363371593') no-repeat center 10px;
 }
+/* home page */
+.palette-bridging-historias.home2 h2#page-title {
+	display: none;
+}
+.palette-bridging-historias.home2  .pane-1 {
+  background-color: white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: #858585 1px 1px 4px;
+  -moz-box-shadow: #858585 1px 1px 4px;
+  box-shadow: #858585 1px 1px 4px;
+  margin: 10px 0 0 ;
+  padding: 25px;
+  font-size: 14px;
+}
+.palette-bridging-historias.home2  .pane-1  h3{
 
+	margin: 0;
+	font-size: 25px;
+	line-height: 1.5
+}
+.palette-bridging-historias.home2  .pane-1  h4{
+	margin: 0 0 1em 0 ;
+	font-size: 18px;
+	line-height: 1.5;
+	color: #2783b9;
+	font-weight: normal;
+}
 .palette-bridging-historias #block-search-form,
 /*  notification settings section */
 .palette-bridging-historias #quicktabs-commons_follow_ui li,
@@ -3954,7 +3987,16 @@ body.palette-bridging-historias .comment-reply {
 .palette-bridging-historias #menu-bar.nav ul.menu li a {
   height: 37px;
 }
-
+/* home page */
+.palette-bridging-historias #footer nav {
+	text-align: center;
+}
+.palette-bridging-historias #footer nav a:link, .palette-bridging-historias #footer nav a:visited{
+	text-align: center;
+	display: block;
+	color: #777;
+	padding-top: 10px;
+}
 
 
 
