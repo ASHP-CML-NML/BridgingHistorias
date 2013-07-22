@@ -1,6 +1,3 @@
-/* @override 
-	http://bridginghistorias.gc.cuny.edu/profiles/commons/themes/contrib/commons_origins/css/global.styles.css?mp2c2j */
-
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,800);
 
 
@@ -3690,6 +3687,9 @@ body.front.logged-in .view-commons-homepage-content .article.node.node-page .lin
 #menu-bar.nav ul.menu li.menu-item-1084 a {
   background: url('../images/icons/help.png?1363371593') no-repeat center 10px;
 }
+
+/* @group Bridging Historias Palette */
+
 /* home page */
 .palette-bridging-historias.home2 h2#page-title {
 	display: none;
@@ -3995,13 +3995,10 @@ body.palette-bridging-historias .comment-reply {
 .palette-bridging-historias #footer nav a:link, .palette-bridging-historias #footer nav a:visited{
 	text-align: center;
 	display: block;
-	color: #777;
 	padding-top: 10px;
 }
 
-
-
-
+/* @end */
 
 .palette-orange-red h2 {
   color: #830c00;
