@@ -3726,7 +3726,14 @@ body.front.logged-in .view-commons-homepage-content .article.node.node-page .lin
 .palette-bridging-historias #quicktabs-commons_follow_ui li,
 .palette-bridging-historias #quicktabs-commons_follow_ui span.flag-commons-follow-group.flag-wrapper,
 .palette-bridging-historias form#commons-follow-ui-notification-settings-form .description,
-.palette-bridging-historias form#commons-follow-ui-notification-settings-form .form-item-message-subscribe-email
+.palette-bridging-historias form#commons-follow-ui-notification-settings-form .form-item-message-subscribe-email,
+/* visibility settings  and group roles and permissins in "create a group" options */
+.palette-bridging-historias .field-name-group-access#edit-group-access,
+.palette-bridging-historias .field-name-og-roles-permissions,
+.palette-bridging-historias dl.admin-list *:nth-child(5),
+.palette-bridging-historias dl.admin-list *:nth-child(6),
+.palette-bridging-historias dl.admin-list *:nth-child(7),
+.palette-bridging-historias dl.admin-list *:nth-child(8)
  {
  	display: none;
 }
