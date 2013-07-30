@@ -1,3 +1,6 @@
+/* @override 
+	http://bridginghistorias.gc.cuny.edu/profiles/commons/themes/contrib/commons_origins/css/global.styles.css?mqicyg */
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,800);
 
 
@@ -3818,6 +3821,34 @@ body.palette-bridging-historias.page-events p.author-datetime, body.palette-brid
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb431', endColorstr='#fb8410',GradientType=0 ); /* IE6-9 */
 }
 
+.palette-bridging-historias .commons-login:hover {
+  box-shadow: 1px 1px 1px #feb431 inset, 0 3px 3px rgba(0, 0, 0, 0.09);
+  min-width: 83px;
+  height: 36px;
+  padding: 0 10px;
+  *zoom: 1;
+  border: 1px solid #ff9126;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  color: white;
+  font-size: 21px;
+  line-height: 36px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  text-shadow: 0px 0px 3px rgba(100, 0, 0, 0.69);
+  background: #feb431; /* Old browsers */
+  background: -moz-linear-gradient(top, #fb8410 21%, #feb431 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(21%,#fb8410), color-stop(100%,#feb431)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fb8410 21%,#feb431 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fb8410 21%,#feb431 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fb8410 21%,#feb431 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #fb8410 21%,#feb431 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fb8410', endColorstr='#feb431',GradientType=0 ); /* IE6-9 */
+}
 .palette-bridging-historias section.field-name-group-content-access {
   display: none;
 }
@@ -3988,6 +4019,28 @@ body.palette-bridging-historias .comment-reply {
   border: 1px solid #ff9126;
   color: white;
 }
+
+.palette-bridging-historias .pane-commons-groups-commons-groups-create-group a:hover, 
+.pane-commons-groups-commons-groups-create-group .palette-bridging-historias a:hover,  
+.palette-bridging-historias #quicktabs-container-commons_bw .quicktabs-tabpage .attachment-before > a:hover, 
+#quicktabs-container-commons_bw .quicktabs-tabpage .palette-bridging-historias .attachment-before >a:hover,  
+.palette-bridging-historias #quicktabs-container-commons_bw .quicktabs-tabpage .comment-add a:hover,  
+#quicktabs-container-commons_bw .quicktabs-tabpage .comment-add .palette-bridging-historias a:hover, 
+ 
+.palette-bridging-historias form.commons-events-form-float input:hover, 
+form.commons-events-form-float .palette-bridging-historias input:hover, 
+.palette-bridging-historias .pane-commons-events-commons-events-create-event-link a:hover,  
+.pane-commons-events-commons-events-create-event-link .palette-bridging-historias a:hover {
+  box-shadow: 1px 1px 1px #feb431 inset, 0 3px 3px rgba(0, 0, 0, 0.09);
+  background-color: #ff9126;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#ff9126', endColorstr='#feb431');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9126), color-stop(100%, #feb431));
+  background-image: -webkit-linear-gradient(top, #ff9126 0%, #feb431 100%);
+  background-image: -moz-linear-gradient(top, #ff9126 0%, #feb431 100%);
+  background-image: -o-linear-gradient(top, #ff9126 0%, #feb431 100%);
+  background-image: linear-gradient(top, #ff9126 0%, #feb431 100%);
+ }
 .palette-bridging-historias .selectBox-dropdown {
   color: #d54f1a;
 }
