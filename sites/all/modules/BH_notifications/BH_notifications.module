@@ -1,0 +1,127 @@
+<?php
+/**
+ * @file
+ * Module for altering Drupal emails, created for Bridging Historias Drupal Commons project
+ */
+
+/**
+ * @defgroup BH_notifications
+ * @{
+ * Module for altering Drupal emails
+ * Drawn from Drupal's "example email" developer resource
+ *
+ */
+
+function BH_notifications_mail($key, &$message, $params) {
+  global $user;
+
+  $options = array(
+    'langcode' => $message['language']->language,
+  );
+  switch ($key) {
+		// Send a simple message from the contact form.
+		case 'contact_message':
+		$message['subject'] = t($params['subject']);
+		//the email body is here, inside the $message array
+		$message['body'][] = $params['body'];
+		break;
+  }
+}
+/**
+ * Sends an e-mail.
+ */
+function BH_notifications_mail_send($paramsArray) {
+	// All system mails need to specify the module and template key (mirrored from
+	// hook_mail()) that the message they want to send comes from.
+	$module = 'BH_notifications';
+	$key = 'contact_message';
+	$to = $paramsArray['email'];
+	$from = variable_get('site_mail', 'admin@example.com');
+	$params = $paramsArray;
+	$language = language_default();
+	$send = TRUE;
+	$result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
+	if ($result['result'] == TRUE) {
+		drupal_set_message(t('Your message has been sent.'));
+	}
+	else {
+		drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
+	}
+}
+
+/**
+ * Implement hook_mail_alter().
+ */
+function BH_notifications_mail_alter(&$message) {
+  // Modify all the outgoing messages and attach a site signature.
+  // The signature will be translated to the language in which message was built.
+  $options = array(
+    'langcode' => $message['language']->language,
+  );
+  $signature = t("\n--\n Bridging Historias, 2013-2015, American Social History Project, The Graduate Center, CUNY", array(), $options);
+  
+  
+  
+   $signature = t("\n--\n" . variable_get('BH_notifications_sigtext', '') , array(), $options);
+  if (is_array($message['body'])) {
+    $message['body'][] = $signature;
+  } else {  // Some modules use the body as a string, erroneously.
+    $message['body'] .= $signature;
+  }
+}
+/** */
+
+ function BH_notifications_admin() {
+  $form = array();
+
+  $form['BH_notifications_sigtext'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Signature'),
+    '#default_value' => variable_get('BH_notifications_sigtext', ''),
+    '#size' => 200,
+    '#maxlength' => 200,
+    '#description' => t("The text that appears on the bottom of every email notification.  Maximum length 200 characters."),
+    '#required' => TRUE,
+  );
+
+  return system_settings_form($form);
+}
+/**
+ * Implement hook_install()
+ */
+ function BH_notifications_install () {
+    $menu = array(
+        'menu_name' => 'BH_notifications_menu',
+        'title' => 'Bridging Historias notifications menu',
+        'description' => 'This module modifies the content of the email notifications.'
+    );
+
+    menu_save($menu);
+    cache_clear_all('*', 'cache_menu', TRUE);
+
+    drupal_set_message($message = t('The module was successfully installed. '), $type = 'status');
+}
+function BH_notifications_menu() {
+
+  $items = array();
+
+  $items['admin/config/system/BH_notifications'] = array(
+    'title' => 'Bridging Historias notifications settings',
+    'description' => 'Here is where you can modify the email signature',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('BH_notifications_admin') ,
+    'access arguments' => array('administer users'),
+    'type' => MENU_NORMAL_ITEM
+   );
+
+  return $items;
+}
+function BH_notifications_node_delete($node) {
+	// This is where to move the contents of the script
+	// $whereto= 'example@email.com';
+	// include_once '/var/www/html/_dev_bh/scripts/bridging_historias_notifications.test.php';
+
+}
+/**
+ * @} End of "defgroup BH_notifications".
+ */
