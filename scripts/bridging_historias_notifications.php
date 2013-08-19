@@ -34,7 +34,7 @@ foreach ($users as $u) {
     $sender['realname'] = $u->realname;
     $sender['email'] = $u->mail;
   }
-  $email_message = 'Hi '.$u->realname.', '.$sender['realname'].' created the '.$context['node']->type.' “'.$context['node']->title.'” on bridging historias on '.date('D, m/d/Y - h:i').':'.$message_body.'Permalink: '.$url.' <br />Add a comment at '.$url .'#comment-form';
+  $email_message = 'Hi '.$u->realname.', '. $context['node']->nid . "  " . $sender['realname'].' created the '.$context['node']->type.' “'.$context['node']->title.'” on bridging historias on '.date('D, m/d/Y - h:i').':'.$message_body.'Permalink: '.$url.' <br />Add a comment at '.$url .'#comment-form';
 
   $headers = array(
 	'MIME-Version' => '1.0',

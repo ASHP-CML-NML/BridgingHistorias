@@ -1,7 +1,6 @@
 name = Bridging Historias Notifications
 description = Custom module for altering Drupal emails -- modifying layout and adding signatures 
 core = 7.x
-files[] = BH_notifications.test
 configure = admin/config/system/BH_notifications
 
 
