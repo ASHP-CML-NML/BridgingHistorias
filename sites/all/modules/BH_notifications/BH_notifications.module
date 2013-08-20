@@ -1,14 +1,15 @@
 <?php
 /**
  * @file
- * Module for altering Drupal emails, created for Bridging Historias Drupal Commons project
+ * Module created for Bridging Historias Drupal Commons project
+ * for notifying group users of a post in their group:
+ * Loops through all members of a group that are set to follow,
+ * calls custom email function
  */
 
 /**
  * @defgroup BH_notifications
  * @{
- * Module for altering Drupal emails
- * Drawn from Drupal's "example email" developer resource
  *
  */
 
@@ -28,7 +29,7 @@ function BH_notifications_mail($key, &$message, $params) {
   }
 }
 /**
- * Sends an e-mail.
+ * Implement hook_mail_send().
  */
 function BH_notifications_mail_send($paramsArray) {
 	// All system mails need to specify the module and template key (mirrored from
@@ -79,7 +80,6 @@ function BH_notifications_mail_alter(&$message) {
     '#description' => t("The text that appears on the bottom of every email notification.  Maximum length 200 characters."),
     '#required' => TRUE,
   );
-
   return system_settings_form($form);
 }
 /**
@@ -119,9 +119,10 @@ function BH_notifications_node_insert($node) {
 	if (is_array($node->og_group_ref['und'])) {
   		foreach ($node->og_group_ref['und'] as $og_group_ref) {
     		$group_id = $og_group_ref['target_id'];
+    		// 5 is the state of following and receiving emails
     		$result = db_query('SELECT flag_content.uid FROM flag_content WHERE flag_content.content_id  = :cid AND flag_content.fid = 5 ', array(':cid' => $group_id));
     		foreach ($result as $record) {
-      			$uids[$record->uid] = $record->uid;	
+      			$uids[$record->uid] = $record->uid;
     		}  
   		}
 	}
@@ -134,7 +135,6 @@ function BH_notifications_node_insert($node) {
 	$url = url('node/' . $node->nid, array('absolute' => TRUE));
 	$users = user_load_multiple($uids, $conditions = array(), $reset = FALSE);
 	$sender = user_load($node->uid);
-//	mail('example@life.edu','test3',$node->type);
 	foreach ($users as $u) {
   		$email_message = 'Hi '.$u->realname.', '.$sender->realname.' created the ' . $node->type .' “'.$node->title .'” on bridging historias on '.date('D, m/d/Y - h:i').':'.$message_body.'Permalink: '.$url.' <br />Add a comment at '.$url .'#comment-form';
   		$headers = array(
@@ -151,6 +151,59 @@ function BH_notifications_node_insert($node) {
   		$send = TRUE;
   		$message = drupal_mail($module, $key, $u->mail, $language, $params, $from, $send);
 	}
+
+}
+function BH_notifications_comment_insert($node) {
+		ob_start();
+		print_r($node); //would normally get printed to the screen/output to browser
+		$output = ob_get_contents();
+		ob_end_clean();
+	
+		$module = 'BH_notifications';
+  		$key = 'contact_message';
+  		$language = language_default();
+  		$bodeswell = 
+  		$params = array('subject' => t('New Comment in Bridging Historias: '), 'body' => $output);
+  		$from = NULL;
+  		$send = TRUE;
+  		$message = drupal_mail($module, $key, 'lhenze@gc.cuny.edu', $language, $params, $from, $send);
+  		
+	/* $uids = array();
+	if (is_array($node->og_group_ref['und'])) {
+  		foreach ($node->og_group_ref['und'] as $og_group_ref) {
+    		$group_id = $og_group_ref['target_id'];
+    		$result = db_query('SELECT flag_content.uid FROM flag_content WHERE flag_content.content_id  = :cid AND flag_content.fid = 5 ', array(':cid' => $group_id));
+    		foreach ($result as $record) {
+      			$uids[$record->uid] = $record->uid;
+    		}  
+  		}
+	} */
+	//$message_body = '';
+	/*if (is_array($node->body['und'])) {
+  		foreach ($node->body['und'] as $m) {
+    		$message_body = $m['value']."\n";
+  		}
+	}
+	$url = url('node/' . $node->nid, array('absolute' => TRUE));
+	
+	$users = user_load_multiple($uids, $conditions = array(), $reset = FALSE);
+	$sender = user_load($node->uid);
+	foreach ($users as $u) {
+  		$email_message = 'Hi '.$u->realname.', '.$sender->realname.' created the comment “'.$node->title .'” on bridging historias on '.date('D, m/d/Y - h:i').':'.$message_body.'Permalink: '.$url.' <br />Add a comment at '.$url .'#comment-form';
+  		$headers = array(
+	'MIME-Version' => '1.0',
+	'Content-Type' => 'text/html; charset=UTF-8; format=flowed',
+	'Content-Transfer-Encoding' => '8Bit',
+	'X-Mailer' => 'Drupal'
+  		);
+  		$module = 'BH_notifications';
+  		$key = 'contact_message';
+  		$language = language_default();
+  		$params = array('subject' => t('New Comment in Bridging Historias: '.$node->title), 'body' => t($email_message));
+  		$from = NULL;
+  		$send = TRUE;
+  		$message = drupal_mail($module, $key, $u->mail, $language, $params, $from, $send);
+	}*/
 
 }
 /**
