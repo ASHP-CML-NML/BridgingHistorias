@@ -2,7 +2,7 @@
 /**
  * @file
  * Module created for Bridging Historias Drupal Commons project
- * for notifying group users of a post in their group:
+ * for notifying group users of a post or comment in their group:
  * Loops through all members of a group that are set to follow,
  * calls custom email function
  */
@@ -119,7 +119,6 @@ function BH_notifications_node_insert($node) {
 	if (is_array($node->og_group_ref['und'])) {
   		foreach ($node->og_group_ref['und'] as $og_group_ref) {
     		$group_id = $og_group_ref['target_id'];
-    		// 5 is the state of following and receiving emails
     		$result = db_query('SELECT flag_content.uid FROM flag_content WHERE flag_content.content_id  = :cid AND flag_content.fid = 5 ', array(':cid' => $group_id));
     		foreach ($result as $record) {
       			$uids[$record->uid] = $record->uid;
@@ -151,60 +150,50 @@ function BH_notifications_node_insert($node) {
   		$send = TRUE;
   		$message = drupal_mail($module, $key, $u->mail, $language, $params, $from, $send);
 	}
-
 }
 function BH_notifications_comment_insert($node) {
-		ob_start();
-		print_r($node); //would normally get printed to the screen/output to browser
-		$output = ob_get_contents();
-		ob_end_clean();
+  	$parent_node = node_load($node->nid);
+	$uids = array();
+		if (is_array($parent_node->og_group_ref['und'])) {
+  			foreach ($parent_node->og_group_ref['und'] as $og_group_ref) {
+    			$group_id = $og_group_ref['target_id'];
+    			$result = db_query('SELECT flag_content.uid FROM flag_content WHERE flag_content.content_id  = :cid AND flag_content.fid = 5 ', array(':cid' => $group_id));
+    			foreach ($result as $record) {
+      				$uids[$record->uid] = $record->uid;
+    			}  
+  			}
+		}
+		$urlofcomment = url('comment/' . $node->cid, array('absolute' => TRUE));
 	
+		$users = user_load_multiple($uids, $conditions = array(), $reset = FALSE);
+	 	$commenter_name = $node->name;
+	 	$comment_subject = $node->subject;
+	 	$comment_body =  $node->comment_body['und'][0]['value'];
+    	$group_id = $parent_node->og_group_ref['und'][0]['target_id'];
+    	$post_title = $parent_node->title;
+    	$result = db_query('SELECT n.nid, n.title FROM {node} n WHERE n.nid = :nid', array(':nid' => $group_id));
+		foreach ($result as $record) {
+  			$group_name = $record->title;
+		}
 		$module = 'BH_notifications';
   		$key = 'contact_message';
   		$language = language_default();
-  		$bodeswell = 
-  		$params = array('subject' => t('New Comment in Bridging Historias: '), 'body' => $output);
   		$from = NULL;
   		$send = TRUE;
-  		$message = drupal_mail($module, $key, 'lhenze@gc.cuny.edu', $language, $params, $from, $send);
-  		
-	/* $uids = array();
-	if (is_array($node->og_group_ref['und'])) {
-  		foreach ($node->og_group_ref['und'] as $og_group_ref) {
-    		$group_id = $og_group_ref['target_id'];
-    		$result = db_query('SELECT flag_content.uid FROM flag_content WHERE flag_content.content_id  = :cid AND flag_content.fid = 5 ', array(':cid' => $group_id));
-    		foreach ($result as $record) {
-      			$uids[$record->uid] = $record->uid;
-    		}  
-  		}
-	} */
-	//$message_body = '';
-	/*if (is_array($node->body['und'])) {
-  		foreach ($node->body['und'] as $m) {
-    		$message_body = $m['value']."\n";
-  		}
-	}
-	$url = url('node/' . $node->nid, array('absolute' => TRUE));
-	
-	$users = user_load_multiple($uids, $conditions = array(), $reset = FALSE);
-	$sender = user_load($node->uid);
-	foreach ($users as $u) {
-  		$email_message = 'Hi '.$u->realname.', '.$sender->realname.' created the comment “'.$node->title .'” on bridging historias on '.date('D, m/d/Y - h:i').':'.$message_body.'Permalink: '.$url.' <br />Add a comment at '.$url .'#comment-form';
-  		$headers = array(
-	'MIME-Version' => '1.0',
-	'Content-Type' => 'text/html; charset=UTF-8; format=flowed',
-	'Content-Transfer-Encoding' => '8Bit',
-	'X-Mailer' => 'Drupal'
-  		);
-  		$module = 'BH_notifications';
-  		$key = 'contact_message';
-  		$language = language_default();
-  		$params = array('subject' => t('New Comment in Bridging Historias: '.$node->title), 'body' => t($email_message));
-  		$from = NULL;
-  		$send = TRUE;
-  		$message = drupal_mail($module, $key, $u->mail, $language, $params, $from, $send);
-	}*/
-
+  		foreach ($users as $u) {
+  			$output = "";
+			$output .= "Hi ". $u->realname. ', ';
+			$output .= "\n" ;
+			$output .= "\n" . $commenter_name . ' has posted a comment in "' .  $group_name  . '" group ';
+			$output .= "\non post: " . $post_title;
+			$output .= "\n" ;
+			$output .= "\n" . $comment_subject;
+			$output .= "\n" . $comment_body;
+			$output .= "\n" ;
+			$output .= "\n Permalink: "  . $urlofcomment;
+  			$params = array('subject' => t('New Comment in Bridging Historias: ' . $comment_subject), 'body' => $output);
+  			$message = drupal_mail($module, $key, $u->mail, $language, $params, $from, $send);
+		}
 }
 /**
  * @} End of "defgroup BH_notifications".
